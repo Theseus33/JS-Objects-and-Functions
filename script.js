@@ -7,7 +7,7 @@
  */
 //Function Constructor
 //object literal
-
+/*
 var john = {
   name: "John",
   birthYear: 1990,
@@ -51,3 +51,33 @@ mark.calcAge();
 console.log(john.lastName);
 console.log(jane.lastName);
 console.log(mark.lastName);
+*/
+
+// Object.create
+//we first define an object that will act as the prototype
+//then we create an object based on that prototype
+
+//prototype as a simble object
+
+var personProto = {
+  calculateAge: function() {
+    console.log(2019 - this.birthYear);
+  }
+};
+
+var john = Object.create(personProto);
+john.name = "John";
+john.birthYear = 1990;
+john.job = "teacher";
+
+//object.create accepts a second param
+
+var jane = Object.create(personProto, {
+  name: { value: "Jane" },
+  birthYear: { value: 1969 },
+  job: { value: "designer" }
+});
+
+//the difference between Object.create and the function constructor pattern is that Object.create
+//inherits directly from the one we passed into the first argument
+//the function constructor the newly created object inherits from the constructors prototype property
