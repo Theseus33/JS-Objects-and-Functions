@@ -58,7 +58,7 @@ console.log(mark.lastName);
 //then we create an object based on that prototype
 
 //prototype as a simble object
-
+/*
 var personProto = {
   calculateAge: function() {
     console.log(2019 - this.birthYear);
@@ -77,7 +77,62 @@ var jane = Object.create(personProto, {
   birthYear: { value: 1969 },
   job: { value: "designer" }
 });
-
+*/
 //the difference between Object.create and the function constructor pattern is that Object.create
 //inherits directly from the one we passed into the first argument
 //the function constructor the newly created object inherits from the constructors prototype property
+
+//Primitives VS Ovjects
+
+//numbers strings booleans and undefineds  and null are Primitives, everything else are objects
+
+/**
+ * a big difference between primitives and objects is that Variables containing primitives actually hold the data
+ * inside the variable itself.
+ * 
+ * variables associated with objects actually do not contain the object but instead contain a reference a place in memory
+ * where the object is stored. It just points to it.
+ * 
+ */
+
+//primitives
+var a = 23;
+var b = a;
+a = 46;
+console.log(a); //returns 46
+console.log(b); //returns 23
+//this means that each of the variables hold their own copy of the data and do not reference anything
+
+//objects
+
+var abj1 = {
+  name: "John",
+  age: 26
+};
+var obj2 = obj1;
+obj1.age = 30;
+console.log(obj1); //returns 30
+console.log(obj2); //returns 30
+
+//all we did was create a new reference to the same object. they point to the same place in memory.
+
+//functions
+
+var age = 27;
+var obj = {
+  name: "Jonas",
+  city: "Lisbon"
+};
+
+function change(a, b) {
+  a = 30;
+  b.city = "San Francisco";
+}
+
+change(age, obj);
+console.log(age); //returns 27
+console.log(city); //returns San Francisco
+
+//the function attempted to change the variables passed into it.
+//The primitive has remained unchanged. The object has been mutated.
+// we do not pass an object into a function but just the reference to that object.
