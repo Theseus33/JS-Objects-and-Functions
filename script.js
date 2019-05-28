@@ -94,7 +94,7 @@ var jane = Object.create(personProto, {
  * where the object is stored. It just points to it.
  * 
  */
-
+/*
 //primitives
 var a = 23;
 var b = a;
@@ -132,7 +132,59 @@ function change(a, b) {
 change(age, obj);
 console.log(age); //returns 27
 console.log(city); //returns San Francisco
-
+*/
 //the function attempted to change the variables passed into it.
 //The primitive has remained unchanged. The object has been mutated.
 // we do not pass an object into a function but just the reference to that object.
+
+//Passing functions as arguments.
+
+/* FUNCTIONS ARE ALSO OBJECTS IN JAVASCRIPT
+
+A function is an instance of the Object type.
+A function behaves like any other object,
+We can store functions in a variable.
+We can pass a function as an argument to another function.
+We can return a function from a function
+-> first class functions
+ */
+
+//Passing functions as Arguments
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+//we can write a function that will recieve an array and return a new result array and do
+//calculations based on a calc function
+
+function arrayCalc(arr, fn) {
+  var arrRes = [];
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i]));
+  }
+  return arrRes;
+}
+
+function calcAge(el) {
+  return 2016 - el;
+}
+
+function isFullAge(el) {
+  return el >= 18;
+}
+
+function maxHeartRate(el) {
+  if (el >= 18 && el <= 81) {
+    return Math.round(206.9 - 0.67 * el);
+  } else {
+    return -1;
+  }
+}
+
+var ages = arrayCalc(years, calcAge);
+console.log(ages);
+
+var fullAges = arrayCalc(ages, isFullAge);
+console.log(fullAges);
+
+var rates = arrayCalc(ages, maxHeartRate);
+console.log(rates);
