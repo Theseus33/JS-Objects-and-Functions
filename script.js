@@ -191,7 +191,7 @@ console.log(rates);
 */
 
 //FUCTIONS returning FUNCTIONS
-
+/*
 function interviewQuestion(job) {
   if (job === "designer") {
     return function(name) {
@@ -215,3 +215,35 @@ teacherQuestion("John");
 designerQuestion("Jane");
 
 interviewQuestion("teacher")("Mark");
+*/
+
+//IIFE iMMEDIATELY INVOKED FUNCTION EXPRESSIONS
+/*
+function game() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+}
+
+game();
+
+//done as an IIFE
+//in JS whats inside of parenthesis cannot be a statement
+//JS knows to treat this as an expression and not as a declaration
+
+(function() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+})();
+
+console.log(score); //shows as undefined
+
+//we obtain data privacy and dont interfere with variables in the global scope
+//we can only call the IIFE once since its not tied to a variable
+//we arent using the IIFE to create a reusable function but
+//but create a new score hidden from the outside scope.
+
+(function(goodLuck) {
+  var score = Math.random() * 10;
+  console.log(score >= 5 - goodLuck);
+})(5);
+*/
