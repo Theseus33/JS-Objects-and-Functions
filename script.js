@@ -308,3 +308,75 @@ function interviewQuestion(job) {
 }
 
 interviewQuestion('teacher')('John');
+
+// BIND, CALL and APPLY
+
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: fucntion(style, timeOfDay) {
+        if (style === 'formal') {
+            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+        } else if (style === 'friendly') {
+            console.log(Hey@ What\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay);
+        }
+    }
+}
+
+john.presentation('formal', 'morning');
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+};
+//call function will change the this variable to the emily object
+//this is called method borrowing
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+//this wont work but there is a similar method called apply
+//this present an array as an argument
+
+//john.presentation.apply(emily, ['friendly', 'afternoon']);
+
+//bind is also similar and allows us to change the this variable explicitly but bind doesnt immediately call the function but instead it generates a copy of thefunction
+// so we can store it somewhere. can use it to create functions with preset arguments
+
+var johnFriendly = john.presentation.bind(john, 'friendly');
+//only one argument left to swet which is timeOfDay
+
+johnFriendly('morning');
+johnFriendly('night');
+
+//this is called 'currying' which is creating a function based on another function with some preset parameters
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+
+emilyFormal('afternoon');
+
+
+
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+  var arrRes = [];
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i]));
+  }
+  return arrRes;
+}
+
+function calcAge(el) {
+  return 2016 - el;
+}
+
+function isFullAge(el) {
+  return el >= 18;
+}
+//bind first argument has to be the this keyword
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(fullJapan);
+console.log(ages);
