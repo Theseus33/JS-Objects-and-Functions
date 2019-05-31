@@ -436,6 +436,15 @@ Question.prototype.displayQuestion() = function () {
     }
 }
 
+Question.prototype.checkAnswer = 
+function(ans) {
+    if (ans === this.correct) {
+        console.log('Correct Answer!');
+    } else {
+        console.log('Wrong Answer! Try again!');
+    }
+}
+
 // This works because hte new operator creates an empty object, then it calls the question function and sets
 //the this variable of the function to the empty object created. And therefore when we set all these properties
 //it will be set to the this variable of the new object. 
@@ -458,3 +467,7 @@ var questions = [q1, q2, q3];
 var n = Math.floor(Math.random() * questions.length); 
 
 questions[n].displayQuestion();
+
+var answer = parseInt(prompt('Please select the correct answer.'));
+
+questions[n].checkAnswer(answer);
