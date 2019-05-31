@@ -499,7 +499,17 @@ the power of closure sfor this, but you dont have to ), just do this with the to
             console.log('Correct Answer!');
         } else {
             console.log('Wrong Answer! Try again!');
+            
+            sc = callback(false);
         }
+
+        this.displayScore(sc);
+    }
+
+    Question.prototype.displayScore = 
+    function(score) {
+        console.log('Your current score is: ' + score);
+        console.log('-------------------------------');
     }
     
     // This works because hte new operator creates an empty object, then it calls the question function and sets
@@ -521,6 +531,18 @@ the power of closure sfor this, but you dont have to ), just do this with the to
     
     var questions = [q1, q2, q3];
 
+    function score() {
+        var sc = 0;
+        return function(correct) {
+            if (correct) {
+                sc++;
+            } 
+            return sc;
+        }
+    }
+
+    var keepScore = score();
+
     function nextQuestion() {
         
         
@@ -528,11 +550,15 @@ the power of closure sfor this, but you dont have to ), just do this with the to
         
         questions[n].displayQuestion();
         
-        var answer = parseInt(prompt('Please select the correct answer.'));
+        var answer = prompt('Please select the correct answer.');
+        callback(true);
         
-        questions[n].checkAnswer(answer);
         
-        nextQuestion();
+        if(answer !== 'exit'){
+            questions[n].checkAnswer(parseInt(answer), keepScore);
+
+            nextQuestion();
+        }
     }
     nextQuestion();
 
