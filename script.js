@@ -421,53 +421,55 @@ the power of closure sfor this, but you dont have to ), just do this with the to
 
 //function constructor
 
-function Question(question, answers, correct) {
-    this.question = question;
-    this.answers = answers;
-    this.correct = correct;
-}
-
-//display question
-Question.prototype.displayQuestion() = function () {
-    console.log(this.question);
-
-    for (var i - 0; i < this.answers.length; i++) {
-        console.log(i + ': ' + this.answers[i]);
+(function()) {
+    function Question(question, answers, correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
     }
-}
-
-Question.prototype.checkAnswer = 
-function(ans) {
-    if (ans === this.correct) {
-        console.log('Correct Answer!');
-    } else {
-        console.log('Wrong Answer! Try again!');
+    
+    //display question
+    Question.prototype.displayQuestion() = function () {
+        console.log(this.question);
+    
+        for (var i - 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
     }
-}
-
-// This works because hte new operator creates an empty object, then it calls the question function and sets
-//the this variable of the function to the empty object created. And therefore when we set all these properties
-//it will be set to the this variable of the new object. 
-
-var q1 = new Question('Is JavaScript the coolest language in the world?'),
-['Yes', 'No'],
-0);
-
-
-var q2 = new Question('What is the name of this course\'s teacher?'),
-['John', 'Michael', 'Jonas'],
-2);
-
-var q3 = new Question('What word best describes coding?'),
-['Boring', 'Fun', 'Tedius'],
-1);
-
-var questions = [q1, q2, q3];
-
-var n = Math.floor(Math.random() * questions.length); 
-
-questions[n].displayQuestion();
-
-var answer = parseInt(prompt('Please select the correct answer.'));
-
-questions[n].checkAnswer(answer);
+    
+    Question.prototype.checkAnswer = 
+    function(ans) {
+        if (ans === this.correct) {
+            console.log('Correct Answer!');
+        } else {
+            console.log('Wrong Answer! Try again!');
+        }
+    }
+    
+    // This works because hte new operator creates an empty object, then it calls the question function and sets
+    //the this variable of the function to the empty object created. And therefore when we set all these properties
+    //it will be set to the this variable of the new object. 
+    
+    var q1 = new Question('Is JavaScript the coolest language in the world?'),
+    ['Yes', 'No'],
+    0);
+    
+    
+    var q2 = new Question('What is the name of this course\'s teacher?'),
+    ['John', 'Michael', 'Jonas'],
+    2);
+    
+    var q3 = new Question('What word best describes coding?'),
+    ['Boring', 'Fun', 'Tedius'],
+    1);
+    
+    var questions = [q1, q2, q3];
+    
+    var n = Math.floor(Math.random() * questions.length); 
+    
+    questions[n].displayQuestion();
+    
+    var answer = parseInt(prompt('Please select the correct answer.'));
+    
+    questions[n].checkAnswer(answer);
+})();
