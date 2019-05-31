@@ -418,3 +418,12 @@ answer. In this case, DONT call the function from task 8.
 the power of closure sfor this, but you dont have to ), just do this with the tools you feel most comforatble with.
 
 11. display the score in teh console. Use yet anotehr method for this.
+
+//function constructor
+
+function Question(question, answers, correct) {
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+}
+
