@@ -427,6 +427,15 @@ function Question(question, answers, correct) {
     this.correct = correct;
 }
 
+//display question
+Question.prototype.displayQuestion() = function () {
+    console.log(this.question);
+
+    for (var i - 0; i < this.answers.length; i++) {
+        console.log(i + ': ' + this.answers[i]);
+    }
+}
+
 // This works because hte new operator creates an empty object, then it calls the question function and sets
 //the this variable of the function to the empty object created. And therefore when we set all these properties
 //it will be set to the this variable of the new object. 
@@ -443,3 +452,9 @@ var q2 = new Question('What is the name of this course\'s teacher?'),
 var q3 = new Question('What word best describes coding?'),
 ['Boring', 'Fun', 'Tedius'],
 1);
+
+var questions = [q1, q2, q3];
+
+var n = Math.floor(Math.random() * questions.length); 
+
+questions[n].displayQuestion();
