@@ -427,3 +427,19 @@ function Question(question, answers, correct) {
     this.correct = correct;
 }
 
+// This works because hte new operator creates an empty object, then it calls the question function and sets
+//the this variable of the function to the empty object created. And therefore when we set all these properties
+//it will be set to the this variable of the new object. 
+
+var q1 = new Question('Is JavaScript the coolest language in the world?'),
+['Yes', 'No'],
+0);
+
+
+var q2 = new Question('What is the name of this course\'s teacher?'),
+['John', 'Michael', 'Jonas'],
+2);
+
+var q3 = new Question('What word best describes coding?'),
+['Boring', 'Fun', 'Tedius'],
+1);
